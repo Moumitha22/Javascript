@@ -23,8 +23,11 @@ const updateProgress = () => {
     const completedTasks = tasks.filter(task => task.completed).length;
     const progress =  (completedTasks/ totalTasks) * 100;
     progressBar.style.width = totalTasks ? `${progress}%` : '0%';
-    console.log(`${completedTasks} / ${totalTasks}`+ " "+progress);
     progressCount.textContent = `${completedTasks} / ${totalTasks}` ;
+
+    if(totalTasks > 0 && completedTasks === totalTasks){
+        blastConfetti();
+    }
 };
 
 const toggleEmptyState = () => {
@@ -109,6 +112,14 @@ taskInput.addEventListener('keypress', (event) => {
         addTask();
     }
 })
+
+const  blastConfetti = () => {
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+}
 
 tasks = getTasks();
 updateTodoList();

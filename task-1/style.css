@@ -239,3 +239,29 @@ li.completed .task-buttons .edit-btn{
     opacity: 0.5;
     pointer-events: none;
 }
+
+@media (max—width: 600px) {
+    .container {
+        margin: 0 20px;
+        padding: 0 10px;
+    }
+
+    .todo-app {
+        padding: 10px;
+        gap: 20px;
+    }
+
+    #count{
+        width: 60px;
+        height: 60px;
+        font-size: 10px;
+    }
+
+    .input-area input {
+        font-size: 15px;
+    }
+
+    #task-list li{
+        font-size: 15px;
+    }
+}
