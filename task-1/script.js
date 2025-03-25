@@ -4,6 +4,8 @@ const addTaskBtn = document.getElementById('add-task-btn');
 const taskList = document.getElementById('task-list');
 const emptyImage = document.querySelector('.empty-image');
 const todosContainer = document.querySelector('.todos-container');
+const progressBar = document.getElementById('progress');
+const progressCount = document.getElementById('count');
 let editIndex = null;
 
 const getTasks = () => {
@@ -15,6 +17,15 @@ const saveTasks = () => {
     const todosJson = JSON.stringify(tasks)
     localStorage.setItem('tasks', todosJson);
 }
+
+const updateProgress = () => {
+    const totalTasks = tasks.length;
+    const completedTasks = tasks.filter(task => task.completed).length;
+    const progress =  (completedTasks/ totalTasks) * 100;
+    progressBar.style.width = totalTasks ? `${progress}%` : '0%';
+    console.log(`${completedTasks} / ${totalTasks}`+ " "+progress);
+    progressCount.textContent = `${completedTasks} / ${totalTasks}` ;
+};
 
 const toggleEmptyState = () => {
     emptyImage.style.display = taskList.children.length === 0 ? 'block' : 'none';
@@ -48,8 +59,9 @@ const updateTodoList = () => {
         checkbox.addEventListener("change", () => toggleTaskComplete(index));
 
         taskList.appendChild(li);
-        toggleEmptyState();     
+        toggleEmptyState();   
     });
+    updateProgress();  
 }
 
 // Add / edit task
