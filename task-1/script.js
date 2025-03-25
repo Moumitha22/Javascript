@@ -1,99 +1,102 @@
 let tasks = [];
 const taskInput = document.getElementById('task-input');
-const addTskBtn = document.getElementById('add-task-btn');
+const addTaskBtn = document.getElementById('add-task-btn');
 const taskList = document.getElementById('task-list');
 const emptyImage = document.querySelector('.empty-image');
 const todosContainer = document.querySelector('.todos-container');
 let editIndex = null;
+
+const getTasks = () => {
+    const todosJson = localStorage.getItem('tasks') || "[]";
+    return JSON.parse(todosJson);
+}
+
+const saveTasks = () => {
+    const todosJson = JSON.stringify(tasks)
+    localStorage.setItem('tasks', todosJson);
+}
 
 const toggleEmptyState = () => {
     emptyImage.style.display = taskList.children.length === 0 ? 'block' : 'none';
     todosContainer.style.width = taskList.children.length > 0 ? '100%' : '50%';
 }
 
-tasks = JSON.parse(localStorage.getItem('taskStore')) || [];
-tasksLoad();
-
-function saveTasks() {
-  localStorage.setItem('taskStore', JSON.stringify(tasks));
+const toggleTaskComplete = (taskIndex) => {
+    tasks[taskIndex].completed = !tasks[taskIndex].completed;
+    saveTasks(); 
+    updateTodoList();
 }
 
-function tasksLoad(){
-    console.log(tasks); 
-    taskList.innerHTML="";
+const updateTodoList = () => {
+    taskList.innerHTML = "";
     tasks.forEach((task,index)=>{
         const li = document.createElement("li");
         li.innerHTML = `
-            <input type="checkbox" class="checkbox">
-            <span>${task}</span>
-            <div class="task-buttons">
-                <button class="edit-btn" onclick="editTask(${index})"><i class="fa-solid fa-pen"></i></button>
-                <button class="delete-btn" onclick="deleteTask(${index})"><i class="fa-solid fa-trash"></i></button>
-            </div>
-         `;
+        <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""}>
+        <span>${task.taskText}</span>
+        <div class="task-buttons">
+            <button class="edit-btn" onclick="editTask(${index})"><i class="fa-solid fa-pen"></i></button>
+            <button class="delete-btn" onclick="deleteTask(${index})"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        `;
+
+        if(task.completed){
+            li.classList.add('completed');
+        }
+
+        const checkbox = li.querySelector(".checkbox");
+        checkbox.addEventListener("change", () => toggleTaskComplete(index));
+
         taskList.appendChild(li);
-        taskInput.value = '';
         toggleEmptyState();     
     });
 }
 
-// Adding Tasks
-// function addTask(){
-//     let taskText = taskInput.value.trim();
-//     if(!taskText)
-//         return;
-//     tasks.push(taskText);
-//     taskInput.value = '';
-//     saveTasks();
-//     tasksLoad();
-// }
-
-function addTask() {
-    let task = taskInput.value.trim();
-    if (!task) 
+// Add / edit task
+const addTask = () => {
+    let taskText = taskInput.value.trim();
+    
+    if(!taskText)
         return;
 
-    if (editIndex !== null) {
-        // Update existing task
-        tasks[editIndex] = task;
+    if(editIndex !== null){
+         // Update existing task
+        tasks[editIndex].taskText = taskText;
         editIndex = null; 
-        addTskBtn.innerHTML = `<i class="fa-solid fa-plus"></i>`; 
-    } else {
-        // Add new task
-        tasks.push(task);
+        addTaskBtn.innerHTML = `<i class="fa-solid fa-plus"></i>`;
     }
-
-    taskInput.value = '';
+    else{
+        // Add new task
+        tasks.push({taskText: taskText, completed: false });    
+    }
+     
     saveTasks();
-    tasksLoad();
+    updateTodoList();
+    taskInput.value = '';
 }
-addTskBtn.addEventListener("click", addTask);
+
+
+const deleteTask = (taskIndex) => {
+    tasks.splice(taskIndex,1);
+    saveTasks();
+    updateTodoList();
+    toggleEmptyState();
+}
+
+const editTask = (taskIndex) =>{
+    if(!tasks[taskIndex].completed){
+        taskInput.value = tasks[taskIndex].taskText;
+        editIndex = taskIndex; 
+        addTaskBtn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
+    }
+}
+
+addTaskBtn.addEventListener("click", addTask);
 taskInput.addEventListener('keypress', (event) => {
     if(event.key === 'Enter'){
         addTask();
     }
 })
 
-//Deleting Tasks
-function deleteTask(taskIndex){
-    tasks.splice(taskIndex,1);
-    saveTasks();
-    tasksLoad();
-    toggleEmptyState();
-}
-
-//Editing Tasks
-// function editTask(taskIndex){
-//     const newTask = prompt("Edit Task:",tasks[taskIndex]);
-//     if(newTask !== null){
-//         tasks[taskIndex] = newTask;
-//         saveTasks();
-//         tasksLoad();
-//     }
-// }
-
-function editTask(taskIndex) {
-    taskInput.value = tasks[taskIndex];
-    editIndex = taskIndex; 
-    addTskBtn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
-}
+tasks = getTasks();
+updateTodoList();

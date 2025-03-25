@@ -152,6 +152,11 @@ img{
     word-wrap: break-word;
 }
 
+li.completed span{
+    text-decoration: line-through;
+    color: #000;
+}
+
 .task-buttons{
     display: flex;
     gap: 10px;
@@ -182,3 +187,7 @@ img{
     background-color: #ff6f91;
 }
 
+li.completed .task-buttons .edit-btn{
+    opacity: 0.5;
+    pointer-events: none;
+}
