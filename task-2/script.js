@@ -6,16 +6,19 @@ let isCalculated = false; // To track if a result was just calculated
 
 // Function to handle input values -> numbers, operators and '.'
 const handleInput = (input) => {
-  if(expression.length === 0 && isOperator(input)){
+  if (expression.length > 35) // Max length of expression
+     return;
+
+  if(expression.length === 0 && isOperator(input))
     return;
-  }
   
+
   if (isCalculated && (!isNaN(input) || input === '.')) { // If result was just calculated and number clicked
     expression = ''; // Clear expression to start a new one
     resultField.textContent = '';
   }
   else if ((isCalculated) && isOperator(input)) { // If result was calculated and an operator is clicked
-    expression = resultField.textContent; // Use the result as the starting point
+    expression = resultField.textContent.slice(2); // Use the result as the starting point
     expressionField.textContent = expression;
   }
 
@@ -28,7 +31,7 @@ const handleInput = (input) => {
 
 // Function to check if the input is an operator
 const isOperator = (input) => {
-  return ['+', '-', 'x', '/', '÷', '%'].includes(input); // Define the valid operators
+  return ['+', '-', 'x', '/', '*', '÷', '%'].includes(input); // Define the valid operators
 };   
 
 // Function to clear the calculator (AC)
@@ -55,8 +58,11 @@ const calculateResult = () => {
   try {
     // Evaluate the expression safely
     console.log(`${expression}`)
-    const result = eval(expression.replace('x', '*').replace('÷', '/'));
-    resultField.textContent = result; // Display result
+    let result = eval(expression.replace('x', '*').replace('÷', '/'));
+    
+    // Fix floating-point issues
+    result = Math.round(result * 1000000000) / 1000000000; // Round to 9 decimal places
+    resultField.textContent = "= "+result; // Display result
     isCalculated = true; // Flag that result was just calculated
   } catch (error) {
     resultField.textContent = 'Error'; // Handle invalid expressions
@@ -69,13 +75,12 @@ const buttons = document.querySelectorAll('.btn');
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     const value = button.textContent;
-    console.log(value);
 
     if (button.classList.contains('number')) {
       handleInput(value); // Handle number input
     } 
     else if (button.classList.contains('operator')) {
-      handleInput(`${value}`); // Handle operator input with spaces
+      handleInput(`${value}`); // Handle operator input
     } 
     else if (button.classList.contains('function')) {
       if (value === 'AC') 
@@ -85,10 +90,36 @@ buttons.forEach(button => {
       else if (value === '%') 
         handleInput('/100'); // Handle percentage input
       else if (value === '.')
-         handleInput('.'); // Handle decimal input
+        handleInput('.'); // Handle decimal input
     } 
     else if (button.classList.contains('equal')) {
       calculateResult(); // Handle equal button for evaluation
     }
   });
 });
+
+document.addEventListener("keydown", (e) => {
+  const value = e.key;
+
+  if(!isNaN(value) || value === '.'){
+    handleInput(value);
+  } 
+  else if(value === '%'){
+    handleInput('/100');
+  }  
+  else if(isOperator(`${value}`)){
+    handleInput(`${value}`);
+  }
+  else if(value === 'Backspace'){ // Clear last entry (C) when Backspace is  pressed
+    clearLast();
+  }
+  else if (value === 'Enter' || value === '=') {  // Calculate result when  Enter or '=' is pressed
+    calculateResult();
+  } 
+  else if (value === 'Escape') {  // Clear all (AC) when Esc is pressed
+    clearAll();
+  } 
+  else{
+    return;
+  }
+})
