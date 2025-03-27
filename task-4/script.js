@@ -1,4 +1,4 @@
-const API_KEY = "bfb0065a62e27ca95b1b93d2d19ffca8";
+// API_KEY is defined in config.js
 const cityInput = document.getElementById("city-input");
 const searchBtn = document.getElementById("search-btn");
 const weatherContent = document.querySelector(".weather-content");
@@ -16,7 +16,7 @@ async function getWeather(city) {
         }
 
         const data = await response.json();
-        
+
         document.querySelector(".city").textContent = data.name;
         document.querySelector(".temp").textContent = Math.round(data.main.temp) + "°C";
         document.querySelector(".desc").textContent = data.weather[0].description;
