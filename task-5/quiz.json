@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "question": "What color is the sky on a clear day?",
+    "options": ["Red", "Green", "Yellow", "Blue"],
+    "answer": "Blue"
+  },
+  {
+    "id": 2,
+    "question": "Which fruit is known for keeping the doctor away?",
+    "options": ["Banana", "Apple", "Grapes", "Orange"],
+    "answer": "Apple"
+  },
+  {
+    "id": 3,
+    "question": "What sound does a cat make?",
+    "options": ["Meow", "Woof", "Quack", "Moo"],
+    "answer": "Meow"
+  },
+  {
+    "id": 4,
+    "question": "Which is the fastest land animal?",
+    "options": ["Elephant", "Horse", "Cheetah", "Rabbit"],
+    "answer": "Cheetah"
+  },
+  {
+    "id": 5,
+    "question": "What do bees make?",
+    "options": ["Honey", "Milk", "Juice", "Cheese"],
+    "answer": "Honey"
+  }
+]

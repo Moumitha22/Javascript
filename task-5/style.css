@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FFF3E0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.quiz-app {
+    width: 30%;
+    min-width: 450px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 8px 8px 4px rgba(64, 64, 64, 0.2);
+}
+
+.quiz-app h1 {
+    text-align: center;
+    border-bottom: 2px solid #FF9800; 
+}
+
+.start-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.btn {
+    background-color: #FB8C00; 
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    box-shadow: 2px 2px 2px #595959;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    min-width: 100px;
+    text-align: center;
+}
+
+#start-btn, #restart-btn {
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: #F57C00;
+    transform: translate(1px, -1px);
+}
+
+#prev-btn {
+    background-color: #f9a948; 
+}
+
+#prev-btn:hover {
+    background-color: #fa8e09; 
+}
+
+.question-area {
+    display: none;
+    padding: 20px 20px;
+}
+
+.question-area p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    border: 2px solid #F57C00; 
+    background: rgba(255, 152, 0, 0.2);
+}
+
+.options .option {
+    border: 2px solid gray;
+    border-radius: 5px;
+    width: 50%;
+    padding: 5px 10px;
+    font-weight: 500;
+}
+
+.btns {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.result-area {
+    display: none;
+    text-align: center;
+    padding: 20px;
+}
+
+.result-area h2, p {
+    margin-bottom: 15px;
+}
