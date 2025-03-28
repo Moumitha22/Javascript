@@ -39,10 +39,10 @@
 ![Question Screen](./outputs/image2.png)
 
 #### User Selection
-![User Selection](./outputs/image2.png)
+![User Selection](./outputs/image3.png)
 
 #### Alert
-![Alert](./outputs/image3.png)
+![Alert](./outputs/image4.png)
 
 #### Score Display
-![Score Display](./outputs/image4.png)
+![Score Display](./outputs/image5.png)
