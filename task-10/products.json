@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Laptop",
+        "category": "Electronics",
+        "price": 90000,
+        "img": "https://m.media-amazon.com/images/I/71jG+e7roXL._AC_SL1500_.jpg",
+        "description": "A high-performance laptop for work and gaming."
+    },
+    {
+        "id": 2,
+        "name": "Smartphone",
+        "category": "Electronics",
+        "price": 25000,
+        "img": "https://jamesandco.in/wp-content/uploads/2024/09/Vivo-Y28s-5G-494421915-i-1-1200Wx1200H.jpeg",
+        "description": "A latest-generation smartphone with an amazing camera."
+    },
+    {
+        "id": 3,
+        "name": "Headphones",
+        "category": "Electronics",
+        "price": 10500,
+        "img": "https://www.boat-lifestyle.com/cdn/shop/products/main2_b66dce6b-710d-49cb-9d1c-2bc8c9c0ab15.png?v=1645698328",
+        "description": "Noise-canceling headphones for immersive sound."
+    },
+    {
+        "id": 4,
+        "name": "T-Shirt",
+        "category": "Clothing",
+        "price": 1200,
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiMxkGYxAgQERRcRiPshe-5daa3faLG6i6EQ&s",
+        "description": "A stylish comfortable cotton t-shirt with a modern fit."
+    },
+    {
+        "id": 5,
+        "name": "Sneakers",
+        "category": "Footwear",
+        "price": 2800,
+        "img": "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw8f436c8e/images/large/199025390934-1.jpeg",
+        "description": "Comfortable and stylish sneakers for everyday wear."
+    },
+    {
+        "id": 6,
+        "name": "Backpack",
+        "category": "Accessories",
+        "price": 2500,
+        "img": "https://mokobara.com/cdn/shop/files/The-Cheddar-Backpack_JB-1.jpg?v=1739271728",
+        "description": "A spacious and durable backpack for travel or school."
+    },
+    {
+        "id": 7,
+        "name": "Wristwatch",
+        "category": "Accessories",
+        "price": 12000,
+        "img": "https://gutereise.in/cdn/shop/files/241988.1_1_800x.jpg?v=1698828630",
+        "description": "A premium wristwatch with water resistance."
+    },
+    {
+        "id": 8,
+        "name": "Coffee Maker",
+        "category": "Home Appliances",
+        "price": 16000,        
+        "img": "https://images-cdn.ubuy.co.in/653fc5a70fdd3b03d3619ee4-mainstays-black-5-cup-drip-coffee-maker.jpg",
+        "description": "Brew fresh coffee with this high-quality coffee maker."
+    },
+    {
+        "id": 9,
+        "name": "Microwave Oven",
+        "category": "Home Appliances",
+        "price": 32000,
+        "img": "https://morphyrichardsindia.com/cdn/shop/files/MicrowaveOven27CGF_1.jpg?v=1733396657",
+        "description": "A powerful and efficient microwave oven for quick meals."
+    },
+    {
+        "id": 10,
+        "name": "Shirt",
+        "category": "Clothing",
+        "price": 1900,
+        "img": "https://roark.com/cdn/shop/files/SRW534_NAVY-PLAID_001.png?v=1737048301",
+        "description": "An ergonomic office chair for ultimate comfort."
+    }
+]
