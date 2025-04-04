@@ -1,4 +1,3 @@
-// Global Variables
 let productsData = [];
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let currentCategory = "all";
@@ -118,14 +117,23 @@ function updateCartCount() {
 function displayCart() {
     const container = document.getElementById("cart-container");
     const totalPriceElement = document.getElementById("total-price");
+    const taxElement = document.getElementById("tax-amount");
+    const discountElement = document.getElementById("discount-amount");
+    const finalPriceElement = document.getElementById("final-price");
+    const totalContainer = document.querySelector(".cart-total-container");
 
     if (!container) return;
 
     if (cart.length === 0) {
         container.innerHTML = "<p class='text-center text-gray-600 text-lg'>Your cart is empty.</p>";
-        totalPriceElement.innerText = "0.00";
+        totalContainer.style.display = "none";
         return;
     }
+
+    let subtotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    let tax = subtotal * 0.10; // 10% tax
+    let discount = subtotal > 500 ? subtotal * 0.05 : 0; // 5% discount if subtotal > 500
+    let finalTotal = subtotal + tax - discount;
 
     container.innerHTML = `
         <div class="cart-header">
@@ -154,7 +162,10 @@ function displayCart() {
         </div>
     `;
 
-    totalPriceElement.innerText = cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    totalPriceElement.innerText = "₹ "+subtotal.toFixed(2);
+    taxElement.innerText = "₹ "+tax.toFixed(2);
+    discountElement.innerText = "₹ "+discount.toFixed(2);
+    finalPriceElement.innerText = "₹ "+finalTotal.toFixed(2);
 }
 
 // Modify quantity (increment or decrement)

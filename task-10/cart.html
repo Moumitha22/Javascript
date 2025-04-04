@@ -15,9 +15,14 @@
 
     <div id="cart-container"></div>
 
-    <p class="cart-total">Total:  ₹<span id="total-price">0.00</span></p>
-    <button onclick="clearCart()" class="clear-cart-btn">Clear Cart</button>
+    <div class="cart-total-container">
+        <p>Subtotal:  <span id="total-price">0.00</span></p>
+        <p>Tax (10%):  <span id="tax-amount">0.00</span></p>
+        <p>Discount (5%):  <span id="discount-amount">0.00</span></p>
+        <p><strong>Final Total: <span id="final-price">0.00</span></strong></p>
+    </div>
 
+    <button onclick="clearCart()" class="clear-cart-btn">Clear Cart</button>
 
     <script src="script.js"></script>
 </body>
